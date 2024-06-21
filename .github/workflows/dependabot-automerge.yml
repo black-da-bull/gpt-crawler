@@ -1,0 +1,15 @@
+name: 'Dependabot Automerge - Action'
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Automerge PR
+        uses: pascalgn/automerge-action@v0.14.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
