@@ -1,0 +1,45 @@
+version 2
+name: NPM and Docker Workflow
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *' # Daily schedule (adjust as needed)
+
+jobs:
+  update-npm-and-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 1: Update npm packages and lockfile
+      - name: Update npm dependencies
+        run: npm install
+
+      # Step 2: Address Dependabot security alerts
+      - name: Dependabot
+        uses: dependabot/dependabot-core@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 3: Build Docker image
+      - name: Build Docker image
+        run: docker build -t gpt-crawler containerapp
+
+      # Step 4: Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      # Step 5: Add metadata and labels using docker/metadata-action
+      - name: Extract metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: gpt-crawler
+
+      # Step 6: Push image to Docker Hub
+      - name: Push image to Docker Hub
+        run: docker push gpt-crawler

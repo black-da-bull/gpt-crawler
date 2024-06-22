@@ -3,8 +3,21 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
+# .github/dependabot.yml
+version: 2
 name: NPM and Docker Workflow
-
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "01:00"
+    commit-message:
+      prefix: "npm"
+    groups:
+      all:
+        patterns:
+          - "*"
 on:
   push:
     branches:
