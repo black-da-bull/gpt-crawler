@@ -1,10 +1,12 @@
-version 2
+version: 2
 name: NPM and Docker Workflow
 
 on:
   push:
     branches:
       - main
+    paths:
+      - '**.yml' # Trigger on changes to workflow files
   schedule:
     - cron: '0 0 * * *' # Daily schedule (adjust as needed)
 
