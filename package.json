@@ -10,8 +10,8 @@
     "commander": "^12.1.0",
     "crawlee": "^3.0.0",
     "cross-env": "^7.0.3",
-    "glob": "^10.3.10",
-    "inquirer": "^9.2.12",
+    "glob": "^11.0.0",
+    "inquirer": "^10.1.6",
     "playwright": "*",
     "prettier": "^3.1.0",
     "zod": "^3.22.4"
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@apify/tsconfig": "^0.1.0",
     "@types/inquirer": "^9.0.7",
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.2",
     "ts-node": "^10.8.0",
     "typescript": "^5.0.0"
   },
